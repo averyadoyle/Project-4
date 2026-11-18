@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A simple grocery list organizer that keeps shopping items sorted by category.">
+  <title>My Grocery List | Simple Shopping Organizer</title>
+
+  <!--
+  AI Use Disclosure:
+  Tool(s): ChatGPT (free version)
+  Purpose: Helped plan the page structure, explain Bootstrap responsive layout,
+  and draft starter HTML, CSS, and JavaScript for a categorized grocery list.
+  Human Role: I chose the grocery-list concept and categories, reviewed and
+  customized the design, and will test the website at different screen sizes.
+  -->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light site-nav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#home" aria-label="My Grocery List home">
+        <span class="brand-icon" aria-hidden="true">🛒</span> My Grocery List
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#mainNavigation" aria-controls="mainNavigation"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavigation">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="#home">My list</a></li>
+          <li class="nav-item"><a class="nav-link" href="#how-it-works">How it works</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main id="home">
+    <header class="hero-section">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-lg-7">
+            <p class="eyebrow mb-2">A LITTLE MORE ORGANIZED</p>
+            <h1>Shopping made <span>simple.</span></h1>
+            <p class="hero-copy">Add what you need, choose a category, and keep your next grocery trip on track.</p>
+            <a class="btn btn-light hero-button" href="#add-item">Build your list <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="col-12 col-lg-5 d-none d-md-flex justify-content-center">
+            <div class="hero-art" aria-hidden="true">
+              <span class="art-fruit fruit-one">🍓</span>
+              <span class="art-fruit fruit-two">🥑</span>
+              <span class="art-fruit fruit-three">🥕</span>
+              <span class="art-basket">🧺</span>
+              <span class="art-sparkle sparkle-one">✦</span>
+              <span class="art-sparkle sparkle-two">✦</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="container content-wrap" aria-labelledby="list-heading">
+      <div class="row g-4">
+        <div class="col-12 col-lg-5">
+          <div class="panel add-panel" id="add-item">
+            <div class="section-heading">
+              <span class="section-icon" aria-hidden="true">✚</span>
+              <div>
+                <h2 class="h4 mb-1">Add an item</h2>
+                <p class="small-muted mb-0">What do you need from the store?</p>
+              </div>
+            </div>
+
+            <form id="grocery-form" class="mt-4">
+              <div class="mb-3">
+                <label for="item-name" class="form-label">Grocery item</label>
+                <input class="form-control form-control-lg" type="text" id="item-name"
+                  name="item-name" placeholder="Example: Strawberries" maxlength="60" required>
+              </div>
+              <div class="mb-3">
+                <label for="item-category" class="form-label">Choose a category</label>
+                <select class="form-select form-select-lg" id="item-category" name="item-category" required>
+                  <option value="" selected disabled>Select a category</option>
+                  <option value="Produce">🍎 Produce</option>
+                  <option value="Dairy & Eggs">🥛 Dairy &amp; Eggs</option>
+                  <option value="Meat & Seafood">🍗 Meat &amp; Seafood</option>
+                  <option value="Bakery">🍞 Bakery</option>
+                  <option value="Pantry">🥫 Pantry</option>
+                  <option value="Frozen Foods">🧊 Frozen Foods</option>
+                  <option value="Snacks & Drinks">🥨 Snacks &amp; Drinks</option>
+                  <option value="Other">🛍️ Other</option>
+                </select>
+              </div>
+              <button class="btn btn-primary w-100 add-button" type="submit">+ Add to my list</button>
+              <p class="form-note mb-0 mt-3">Your list stays saved on this device when you come back.</p>
+              <div id="form-message" class="visually-hidden" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <div class="tip-card mt-4" id="how-it-works">
+            <div class="tip-icon" aria-hidden="true">💡</div>
+            <div>
+              <h2 class="h6 mb-1">Quick tip</h2>
+              <p class="mb-0">Check off each item as you put it in your cart. Your list will keep track of what is left!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-7">
+          <div class="list-panel panel">
+            <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-3">
+              <div>
+                <p class="eyebrow mb-1">YOUR SHOPPING PLAN</p>
+                <h2 class="h3 mb-1" id="list-heading">My shopping list</h2>
+                <p class="small-muted mb-0"><span id="remaining-count">0</span> items left to grab</p>
+              </div>
+              <button type="button" class="btn btn-outline-secondary btn-sm clear-button" id="clear-completed">Clear completed</button>
+            </div>
+
+            <div class="progress list-progress mb-4" role="progressbar" aria-label="Shopping list completion"
+              aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="completion-progress">
+              <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+            </div>
+
+            <div id="empty-state" class="empty-state">
+              <div class="empty-illustration" aria-hidden="true">🛍️</div>
+              <h3 class="h5">Your list is ready!</h3>
+              <p class="mb-0">Add your first grocery item using the form.</p>
+            </div>
+            <div id="grocery-groups" class="grocery-groups" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+      <p class="mb-0">My Grocery List <span aria-hidden="true">♥</span></p>
+      <p class="mb-0">A simpler way to shop.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
